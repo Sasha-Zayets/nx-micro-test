@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { App } from './App';
 
 export class HeaderLib extends HTMLElement {
-  // @ts-ignore
-  public mountPoint: HTMLDivElement;
+  private mountPoint!: HTMLDivElement;
   public static observedAttributes = ['creator'];
 
   constructor() {
@@ -13,28 +12,22 @@ export class HeaderLib extends HTMLElement {
   }
 
   connectedCallback() {
-    this.mountReactApp('');
+    this.mountReactApp();
   }
 
   attributeChangedCallback() {
-    const creator: any = this.getAttribute('creator');
-    this.mountReactApp(creator);
+    this.mountReactApp();
   }
 
-  disconnectedCallback() {
-    ReactDOM.unmountComponentAtNode(this.mountPoint);
-  }
-
-  mountReactApp(creator: string) {
-    if (!this.mountPoint) {
+  mountReactApp() {
+    if (!this.mountPoint && this.shadowRoot) {
       this.mountPoint = document.createElement('div');
-      // @ts-ignore
       this.shadowRoot.appendChild(this.mountPoint);
     }
 
-    console.log(creator);
-    ReactDOM.render(<App />, this.mountPoint);
+    const root = ReactDOM.createRoot(this.mountPoint);
+    root.render(<App />);
   }
 }
 
-customElements.define('header-lib', HeaderLib);
+customElements.define('react-lib', HeaderLib);
