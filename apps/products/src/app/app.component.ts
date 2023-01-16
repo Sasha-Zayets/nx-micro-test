@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { CustomEventService } from './custom-event.service';
+import { CustomEventWithSubscribersDecoratorsService } from 'custom-event-with-subscribers-decorators';
 
 @Component({
   selector: 'micro-silpo-root',
@@ -8,7 +8,7 @@ import { CustomEventService } from './custom-event.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private customEvent: CustomEventService) {
+  constructor(private router: Router, private customEvent: CustomEventWithSubscribersDecoratorsService) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         localStorage.setItem("change-route", JSON.stringify({url: event.url}));

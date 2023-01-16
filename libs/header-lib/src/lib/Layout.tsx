@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// @ts-ignore
 import { useSubscribeEvent, useDispatchEvent } from "custom-event-with-subscribers-react";
 import { useNavigate } from 'react-router-dom';
 
