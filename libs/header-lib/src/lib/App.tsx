@@ -48,6 +48,6 @@ const router = createBrowserRouter([
 
 export function App() {
   return (
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider fallbackElement={<div className="fallback-element" />} router={router}></RouterProvider>
   );
 }

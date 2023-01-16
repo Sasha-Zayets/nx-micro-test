@@ -1,31 +1,36 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 // @ts-ignore
 import { useSubscribeEvent, useDispatchEvent } from "custom-event-with-subscribers-react";
 import { useNavigate } from 'react-router-dom';
 
+const SUBSCRIBE_EVENT = "change-route";
+
+function getUrlWithLocalStorage(): string | null {
+  const data = localStorage.getItem(SUBSCRIBE_EVENT);
+
+  if (!data) return null;
+  const urlObj = JSON.parse(data);
+  return urlObj.url;
+}
+
 // Wrapper with watcher router angular
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const { state } = useSubscribeEvent("change-route");
+
+  const { state } = useSubscribeEvent(SUBSCRIBE_EVENT);
   const dispatch = useDispatchEvent();
 
-  const isMount = useRef<boolean | null>(null);
-
   useEffect(() => {
-    isMount.current = true;
-    if (isMount.current && state.url) {
-      navigate(state.url);
+    const newUrl = getUrlWithLocalStorage();
+    if (newUrl) {
+      navigate(newUrl);
+      localStorage.removeItem(SUBSCRIBE_EVENT);
     }
-    return () => {
-      isMount.current = false;
-    };
   }, [state?.url]);
 
   useEffect(() => {
-    if (isMount.current) {
-      dispatch("change-route-react", { url: window.location.pathname });
-    }
-  }, [window.location.pathname, isMount.current]);
+    dispatch("change-route-react", { url: window.location.pathname });
+  }, [window.location.pathname]);
 
   return (
     <div className="layout">

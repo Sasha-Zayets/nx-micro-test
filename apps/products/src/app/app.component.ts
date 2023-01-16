@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { CustomEventService } from './custom-event.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { CustomEventService } from './custom-event.service';
 export class AppComponent implements OnInit {
   constructor(private router: Router, private customEvent: CustomEventService) {
     router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationStart) {
+        localStorage.setItem("change-route", JSON.stringify({url: event.url}));
         customEvent.dispatch("change-route", { url: event.url });
       }
     });
