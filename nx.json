@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "micro-silpo",
+  "npmScope": "nx-apps",
   "affected": {
     "defaultBase": "master"
   },
@@ -9,7 +9,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "MGYyNjA5NDktOWI3NC00NWIwLTg0Y2ItOTA3MTMxMTk3MDdhfHJlYWQtd3JpdGU="
+        "accessToken": "ZDFjMGE3NTMtODVjNS00MmU5LTg1MjEtNTkyMzU4NGY2Mzc1fHJlYWQtd3JpdGU="
       }
     }
   },
@@ -37,7 +37,7 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/.eslintrc.json"
     ],
-    "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
+    "sharedGlobals": []
   },
   "generators": {
     "@nrwl/angular:application": {
@@ -52,22 +52,6 @@
     },
     "@nrwl/angular:component": {
       "style": "scss"
-    },
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "bundler": "webpack",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint",
-        "unitTestRunner": "none"
-      }
     }
   }
 }
