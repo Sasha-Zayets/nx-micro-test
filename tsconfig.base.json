@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nx-apps/host/header": ["libs/host/header/src/index.ts"],
+      "@nx-apps/host/home": ["libs/host/home/src/index.ts"],
+      "@nx-apps/host/not-found": ["libs/host/not-found/src/index.ts"],
+      "@nx-apps/host/router": ["libs/host/router/src/index.ts"],
+      "@nx-apps/host/shell": ["libs/host/shell/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

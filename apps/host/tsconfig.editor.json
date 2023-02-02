@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../../libs/host/header/src/lib/header.component.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

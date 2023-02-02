@@ -8,7 +8,6 @@ const SUBSCRIBE_EVENT = "change-route-react";
 @Component({
   selector: 'nx-apps-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   constructor(private router: Router, private customEvent: CustomEventWithSubscribersDecoratorsService) {
