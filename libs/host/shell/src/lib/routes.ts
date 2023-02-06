@@ -9,6 +9,7 @@ export const router: Route[] = [
         children: [
             {
                 path: '',
+                component: WrapperComponent,
                 loadChildren: () => import('@nx-apps/host/home').then((m) => m.HostHomeModule),
             },
             {
