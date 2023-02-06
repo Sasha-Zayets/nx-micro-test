@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:host": "nx serve --project=host --port 3000"
+    "start:host": "nx serve --project=host --host=silpo.local --port 3004"
   },
   "private": true,
   "devDependencies": {
